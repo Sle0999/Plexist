@@ -26,13 +26,7 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v4
-        with:
-          context: .
-          platforms: |
-            linux/amd64,linux/arm64/v8,linux/arm/v7
-          push: true
-          tags: sle09/284:latest
-          env:
+                  env:
             PLEX_URL: "http://192.168.1.118:32400/"
             PLEX_TOKEN: ""
             WRITE_MISSING_AS_CSV: 0
@@ -46,3 +40,9 @@ jobs:
             SPOTIFY_PLAYLIST_SUFFIX: "Spotify"
             DEEZER_USER_ID: ""
             DEEZER_PLAYLIST_ID: "https://www.deezer.com/en/playlist/10484834882"
+        with:
+          context: .
+          platforms: |
+            linux/amd64,linux/arm64/v8,linux/arm/v7
+          push: true
+          tags: sle09/284:latest
