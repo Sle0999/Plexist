@@ -9,7 +9,19 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-      ENV_VARIABLE_NAME: "your_value_here"
+      PLEX_URL: "http://192.168.1.118:32400/"
+      PLEX_TOKEN: ""
+      WRITE_MISSING_AS_CSV: 0
+      ADD_PLAYLIST_POSTER: 1
+      ADD_PLAYLIST_DESCRIPTION: 1
+      APPEND_INSTEAD_OF_SYNC: 0
+      SECONDS_TO_WAIT: 84000
+      SPOTIFY_CLIENT_ID: ""
+      SPOTIFY_CLIENT_SECRET: ""
+      SPOTIFY_USER_ID: ""
+      SPOTIFY_PLAYLIST_SUFFIX: "Spotify"
+      DEEZER_USER_ID: ""
+      DEEZER_PLAYLIST_ID: "https://www.deezer.com/en/playlist/10484834882"
     steps:
       -
         name: Checkout
