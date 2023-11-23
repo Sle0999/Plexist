@@ -32,3 +32,28 @@ jobs:
           platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
           push: true
           tags: sle09/284:latest
+
+      # Adding the Docker Compose setup step
+      -
+        name: Set up Docker Compose
+        run: |
+          echo "version: '3.9'
+          services:
+            plexist:
+              container_name: plexist
+              image: gyarbij/plexist:latest
+              environment:
+                - PLEX_URL=http://192.168.1.118:32400/
+                - PLEX_TOKEN=<your plex token>
+                - WRITE_MISSING_AS_CSV=0
+                - ADD_PLAYLIST_POSTER=1
+                - ADD_PLAYLIST_DESCRIPTION=1
+                - APPEND_INSTEAD_OF_SYNC=0
+                - SECONDS_TO_WAIT=84000
+                - SPOTIFY_CLIENT_ID=<your spotify client id>
+                - SPOTIFY_CLIENT_SECRET=<your spotify client secret>
+                - SPOTIFY_USER_ID=<your spotify user id>
+                - SPOTIFY_PLAYLIST_SUFFIX=SPOTIFY
+                - DEEZER_USER_ID=<deezer user id>
+                - DEEZER_PLAYLIST_ID=https://www.deezer.com/en/playlist/10484834882
+              restart: unless-stopped" > docker-compose.yml
