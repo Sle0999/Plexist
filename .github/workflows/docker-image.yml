@@ -3,7 +3,7 @@ name: DockerHub
 on:
   push:
     branches:
-      - 'linds'
+      - 'main'
 
 jobs:
   docker:
@@ -31,4 +31,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
           push: true
-          tags: sle09/284:linds
+          tags: sle09/284:latest
