@@ -24,17 +24,25 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      # Create the docker-compose directory and copy the .env file
-      - name: Create docker-compose directory and copy .env
-        run: |
-          mkdir -p docker-compose
-          cp .github/workflows/.env docker-compose/.env
-
-      # Now build and push your Docker image
-      - name: Build and push
+      -
+        name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
           push: true
           tags: sle09/284:latest
+          env:
+            PLEX_URL: http://192.168.1.118:32400/
+            PLEX_TOKEN: 
+            WRITE_MISSING_AS_CSV: 0
+            ADD_PLAYLIST_POSTER: 1
+            ADD_PLAYLIST_DESCRIPTION: 1
+            APPEND_INSTEAD_OF_SYNC: 0
+            SECONDS_TO_WAIT: 84000
+            SPOTIFY_CLIENT_ID: <your spotify client id>
+            SPOTIFY_CLIENT_SECRET: <your spotify client secret>
+            SPOTIFY_USER_ID: <your spotify user id>
+            SPOTIFY_PLAYLIST_SUFFIX: Spotify
+            DEEZER_USER_ID: <deezer user id>
+            DEEZER_PLAYLIST_ID: https://www.deezer.com/en/playlist/10484834882
