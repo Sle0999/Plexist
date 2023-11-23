@@ -41,7 +41,7 @@ jobs:
           services:
             plexist:
               container_name: plexist
-              image: gyarbij/plexist:latest
+              image: sle09/284:latest
               environment:
                 - PLEX_URL=http://192.168.1.118:32400/
                 - PLEX_TOKEN=<your plex token>
