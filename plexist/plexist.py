@@ -27,6 +27,7 @@ def read_environment_variables():
         spotipy_client_id=os.getenv("SPOTIFY_CLIENT_ID"),
         spotipy_client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
         spotify_user_id=os.getenv("SPOTIFY_USER_ID"),
+        spotify_playlist_suffix=os.getenv("SPOTIFY_PLAYLIST_SUFFIX"),
         deezer_user_id=os.getenv("DEEZER_USER_ID"),
         deezer_playlist_ids=os.getenv("DEEZER_PLAYLIST_ID"),
     )
