@@ -9,7 +9,7 @@ from .plex import update_or_create_plex_playlist
 
 
 def _get_sp_user_playlists(
-    sp: spotipy.Spotify, user_id: str, suffix: str = " - SSpotify"
+    sp: spotipy.Spotify, user_id: str, suffix: str = " - " + spotify_playlist_suffix
 ) -> List[Playlist]:
     playlists = []
 
@@ -20,7 +20,7 @@ def _get_sp_user_playlists(
                 playlists.append(
                     Playlist(
                         id=playlist["uri"],
-                        name=playlist["name"] + " - SSpotify",
+                        name=playlist["name"] + " - " + spotify_playlist_suffix,
                         description=playlist.get("description", ""),
                         poster=""
                         if len(playlist["images"]) == 0
