@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       # Add a step to reference the .env file
       - name: Reference .env file
-        run: cp .env ./docker-compose/.env  # Adjust the paths as per your file structure
+        run: cp .github/workflows/.env ./docker-compose/.env  # Adjust the paths as per your file structure
 
       # Now build and push your Docker image
       - name: Build and push
