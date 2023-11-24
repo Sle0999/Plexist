@@ -54,7 +54,6 @@ s.mount("http://", adapter)
 s.mount("https://", adapter)
 #284#
 
-s.timeout = (120, 120)  # Adjust the values as needed
 
 import socket
 from urllib3.connection import HTTPConnection
