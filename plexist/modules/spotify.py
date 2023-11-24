@@ -11,7 +11,6 @@ from .plex import update_or_create_plex_playlist
 
 
 def _get_sp_user_playlists(
-    userInputs: UserInputs,
     sp: spotipy.Spotify, user_id: str, suffix: str = " - " + os.getenv("SPOTIFY_PLAYLIST_SUFFIX")
 ) -> List[Playlist]:
     playlists = []
