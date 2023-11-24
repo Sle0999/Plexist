@@ -1,6 +1,8 @@
 import logging
 from typing import List
 
+import os
+
 import spotipy
 from plexapi.server import PlexServer
 
@@ -10,7 +12,7 @@ from .plex import update_or_create_plex_playlist
 
 def _get_sp_user_playlists(
     userInputs: UserInputs,
-    sp: spotipy.Spotify, user_id: str, suffix: str = " - " + userInputs.spotify_playlist_suffix
+    sp: spotipy.Spotify, user_id: str, suffix: str = " - " + os.getenv("SPOTIFY_PLAYLIST_SUFFIX")
 ) -> List[Playlist]:
     playlists = []
 
@@ -21,7 +23,7 @@ def _get_sp_user_playlists(
                 playlists.append(
                     Playlist(
                         id=playlist["uri"],
-                        name=playlist["name"] + " - " + userInputs.spotify_playlist_suffix,
+                        name=playlist["name"] + " - " + os.getenv("SPOTIFY_PLAYLIST_SUFFIX"),
                         description=playlist.get("description", ""),
                         poster=""
                         if len(playlist["images"]) == 0
