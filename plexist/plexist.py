@@ -32,41 +32,7 @@ def read_environment_variables():
         deezer_playlist_ids=os.getenv("DEEZER_PLAYLIST_ID"),
     )
 
-#284#
-import requests, socket
-from requests.adapters import HTTPAdapter
 
-class HTTPAdapterWithSocketOptions(HTTPAdapter):
-    def __init__(self, *args, **kwargs):
-        self.socket_options = kwargs.pop("socket_options", None)
-        super(HTTPAdapterWithSocketOptions, self).__init__(*args, **kwargs)
-
-    def init_poolmanager(self, *args, **kwargs):
-        if self.socket_options is not None:
-            kwargs["socket_options"] = self.socket_options
-        super(HTTPAdapterWithSocketOptions, self).init_poolmanager(*args, **kwargs)
-
-KEEPALIVE_INTERVAL = 10
-adapter = HTTPAdapterWithSocketOptions(socket_options=[(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
-(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, KEEPALIVE_INTERVAL), (socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, KEEPALIVE_INTERVAL)])
-s = requests.Session()
-s.mount("http://", adapter)
-s.mount("https://", adapter)
-#284#
-
-
-import socket
-from urllib3.connection import HTTPConnection
-
-HTTPConnection.default_socket_options = (
-    HTTPConnection.default_socket_options + [
-        (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
-        (socket.SOL_TCP, socket.TCP_KEEPIDLE, 10),
-        (socket.SOL_TCP, socket.TCP_KEEPINTVL, 10),
-        (socket.SOL_TCP, socket.TCP_KEEPCNT, 10)
-    ]
-)
-#284#
 
 def initialize_plex_server(user_inputs):
     if user_inputs.plex_url and user_inputs.plex_token:
